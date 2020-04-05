@@ -15,8 +15,15 @@ public class Main {
         double paymentTypeInput = Double.parseDouble(bis.readLine()); // тип платежа - аннуитетный или дифференцированный
 
         double InterestRateYear = 9.99; // годовая процентная ставка
-        Double monthlyPayment = cps.calculateMonthlyPayment(creditMoney, creditTermYear, paymentTypeInput, InterestRateYear);
-        System.out.println("Ваш ежемесячный платеж составит " + Math.round(monthlyPayment) + " рублей.");
+
+        // Не удержался и добавил таки проверки на некорректные данные уже после отправки задания))))
+        if ((creditMoney >= 100_000 && creditMoney <= 5_000_000) && (creditTermYear == 1 || creditTermYear == 2 || creditTermYear == 3) && (paymentTypeInput == 0 || paymentTypeInput == 1)) {
+            Double monthlyPayment = cps.calculateMonthlyPayment(creditMoney, creditTermYear, paymentTypeInput, InterestRateYear);
+            System.out.println("Ваш ежемесячный платеж составит " + Math.round(monthlyPayment) + " рублей.");
+        } else {
+            System.out.println("Введены некорректные данные. Повторите ввод.");
+        }
+
     }
 
 }
